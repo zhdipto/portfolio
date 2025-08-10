@@ -8,29 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body { font-family: 'Poppins', sans-serif; }
-    .font-comic { font-family: 'Bangers', cursive; }
-    .comic-border { border: 4px solid black; box-shadow: 5px 5px 0px black; }
-    .glitch { animation: glitch 1s infinite; }
-    .active {
-      color: #ff0080 !important;
-    }
-    @keyframes glitch {
-        0% { text-shadow: 2px 2px #00fff7, -2px -2px #ff004c; }
-        20% { text-shadow: -2px -2px #00fff7, 2px 2px #ff004c; }
-        40% { text-shadow: 2px -2px #00fff7, -2px 2px #ff004c; }
-        60% { text-shadow: -2px 2px #00fff7, 2px -2px #ff004c; }
-        80% { text-shadow: 2px 2px #00fff7, -2px -2px #ff004c; }
-        100% { text-shadow: none; }
-    }
-    /* Button styles with glitch hover  */
-    .btn:hover {
-        color: #ff004c;
-        border-color: #ff004c;
-        animation: glitch 0.5s infinite;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css"> 
   <script src="js/scrollsSpy.js"></script>
 </head>
 <body class="relative overflow-x-hidden">
@@ -49,7 +27,7 @@
   <h2 class="text-4xl font-comic text-spiderYellow mb-6">About Me</h2>
   <div class="comic-border p-6 bg-spiderPurple">
     <!-- Profile Picture -->
-    <img src="img/profile.jpg" alt="profile picture"
+    <img src="assets/profile.jpg" alt="profile picture"
          class="w-60 h-60 object-cover rounded-full border-4 border-black shadow-lg mb-8">
     
     <p class="text-xl" style="text-align: justify; text-2xl">
