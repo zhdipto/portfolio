@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Verse Portal Loader</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #2d1b4e 0%, #1a0d2e 70%, #0a0515 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .portal-container {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            perspective: 1000px;
+        }
+
+        .hexagon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: var(--size);
+            height: var(--size);
+            transform: translate(-50%, -50%) rotateZ(var(--rotation)) rotateX(var(--tilt)) rotateY(var(--spin));
+            animation: portal-spin var(--duration) linear infinite;
+            filter: drop-shadow(0 0 20px var(--glow-color));
+        }
+
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                from 0deg,
+                #ff4500,
+                #ff6b35,
+                #ff8c42,
+                #ffa500,
+                #ff7f00,
+                #ff4500
+            );
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+            border-radius: var(--distortion);
+            animation: distort var(--distort-duration) ease-in-out infinite alternate;
+        }
+
+        .hexagon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.8) 75%, transparent 70%);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+            border-radius: calc(var(--distortion) * 0.7);
+            animation: distort-inner calc(var(--distort-duration) * 1.2) ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* Core hexagon - brightest */
+        .hex-1 {
+            --size: 90px;
+            --duration: 6s;
+            --rotation: 0deg;
+            --tilt: 15deg;
+            --spin: 0deg;
+            --glow-color: #ff4500;
+            --distortion: 5px;
+            --distort-duration: 5s;
+            z-index: 10;
+        }
+
+        /* Inner ring */
+        .hex-2 {
+            --size: 150px;
+            --duration: 8s;
+            --rotation: 60deg;
+            --tilt: -10deg;
+            --spin: 45deg;
+            --glow-color: #ff6b35;
+            --distortion: 15px;
+            --distort-duration: 2.5s;
+            z-index: 9;
+        }
+
+        .hex-3 {
+            --size: 165px;
+            --duration: 10s;
+            --rotation: 120deg;
+            --tilt: 20deg;
+            --spin: -30deg;
+            --glow-color: #ff8c42;
+            --distortion: 25px;
+            --distort-duration: 1.8s;
+            z-index: 8;
+        }
+
+        /* Middle ring */
+        .hex-4 {
+            --size: 225px;
+            --duration: 12s;
+            --rotation: 180deg;
+            --tilt: -25deg;
+            --spin: 60deg;
+            --glow-color: #ffa500;
+            --distortion: 35px;
+            --distort-duration: 3s;
+            z-index: 7;
+        }
+
+        .hex-5 {
+            --size: 255px;
+            --duration: 7s;
+            --rotation: 240deg;
+            --tilt: 30deg;
+            --spin: -45deg;
+            --glow-color: #ff7f00;
+            --distortion: 45px;
+            --distort-duration: 2.2s;
+            z-index: 6;
+        }
+
+        /* Outer ring */
+        .hex-6 {
+            --size: 300px;
+            --duration: 14s;
+            --rotation: 300deg;
+            --tilt: -35deg;
+            --spin: 90deg;
+            --glow-color: #ff6347;
+            --distortion: 55px;
+            --distort-duration: 2.8s;
+            z-index: 5;
+        }
+
+        .hex-7 {
+            --size: 345px;
+            --duration: 16s;
+            --rotation: 45deg;
+            --tilt: 40deg;
+            --spin: -75deg;
+            --glow-color: #ff5722;
+            --distortion: 65px;
+            --distort-duration: 3.5s;
+            z-index: 4;
+        }
+
+        /* Outermost ring */
+        .hex-8 {
+            --size: 390px;
+            --duration: 18s;
+            --rotation: 90deg;
+            --tilt: -45deg;
+            --spin: 120deg;
+            --glow-color: #ff4500;
+           --distortion: 75px; 
+            --distort-duration: 1.5s;
+            z-index: 3;
+        }
+
+        @keyframes portal-spin {
+            0% {
+                transform: translate(-50%, -50%) rotateZ(var(--rotation)) rotateX(var(--tilt)) rotateY(var(--spin));
+            }
+            100% {
+                transform: translate(-50%, -50%) rotateZ(calc(var(--rotation) + 360deg)) rotateX(var(--tilt)) rotateY(calc(var(--spin) + 180deg));
+            }
+        }
+
+        @keyframes distort {
+            0% {
+                border-radius: var(--distortion);
+                transform: scale(1) skew(0deg, 0deg);
+            }
+            25% {
+                border-radius: calc(var(--distortion) * 2);
+                transform: scale(1.1) skew(2deg, -1deg);
+            }
+            50% {
+                border-radius: calc(var(--distortion) * 0.5);
+                transform: scale(0.9) skew(-1deg, 2deg);
+            }
+            75% {
+                border-radius: calc(var(--distortion) * 1.5);
+                transform: scale(1.05) skew(1deg, -2deg);
+            }
+            100% {
+                border-radius: var(--distortion);
+                transform: scale(1) skew(0deg, 0deg);
+            }
+        }
+
+        @keyframes distort-inner {
+            0% {
+                border-radius: calc(var(--distortion) * 0.7);
+                transform: translate(-50%, -50%) scale(1) skew(0deg, 0deg) rotate(0deg);
+            }
+            25% {
+                border-radius: calc(var(--distortion) * 1.4);
+                transform: translate(-50%, -50%) scale(0.9) skew(-2deg, 1deg) rotate(5deg);
+            }
+            50% {
+                border-radius: calc(var(--distortion) * 0.35);
+                transform: translate(-50%, -50%) scale(1.1) skew(1deg, -2deg) rotate(-3deg);
+            }
+            75% {
+                border-radius: calc(var(--distortion) * 1.05);
+                transform: translate(-50%, -50%) scale(0.95) skew(-1deg, 2deg) rotate(2deg);
+            }
+            100% {
+                border-radius: calc(var(--distortion) * 0.7);
+                transform: translate(-50%, -50%) scale(1) skew(0deg, 0deg) rotate(0deg);
+            }
+        }
+
+        .loading-text {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+                text-shadow: 0 0 20px #ff4500;
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px #ff4500, 0 0 40px #ffa500;
+            }
+        }
+
+        /* Energy particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #fff, transparent);
+            border-radius: 50%;
+            animation: float 3s linear infinite;
+            opacity: 0.8;
+        }
+
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 4s;
+        }
+
+        .particle:nth-child(2) {
+            top: 70%;
+            left: 80%;
+            animation-delay: 1s;
+            animation-duration: 3.5s;
+        }
+
+        .particle:nth-child(3) {
+            top: 30%;
+            left: 90%;
+            animation-delay: 2s;
+            animation-duration: 5s;
+        }
+
+        .particle:nth-child(4) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 0.5s;
+            animation-duration: 4.5s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Background dimensional cracks */
+        .bg-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .crack {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #ff4500, transparent);
+            animation: crack-flicker 4s linear infinite;
+            transform-origin: center;
+        }
+
+        .crack:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            transform: rotate(45deg);
+            animation-delay: 0s;
+        }
+
+        .crack:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            transform: rotate(-30deg);
+            animation-delay: 2s;
+        }
+
+        .crack:nth-child(3) {
+            bottom: 30%;
+            left: 70%;
+            transform: rotate(75deg);
+            animation-delay: 1s;
+        }
+
+        @keyframes crack-flicker {
+            0%, 90% {
+                opacity: 0;
+            }
+             95% {
+                opacity: 1;
+                box-shadow: 0 0 20px #ff4500;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-effects">
+        <div class="crack"></div>
+        <div class="crack"></div>
+        <div class="crack"></div>
+    </div>
+
+    <div class="portal-container">
+        <div class="hexagon hex-1"></div>
+        <div class="hexagon hex-2"></div>
+        <div class="hexagon hex-3"></div>
+        <div class="hexagon hex-4"></div>
+        <div class="hexagon hex-5"></div>
+        <div class="hexagon hex-6"></div>
+        <div class="hexagon hex-7"></div>
+        <div class="hexagon hex-8"></div>
+        
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        
+        <div class="loading-text">Loading</div>
+    </div>
+</body>
+</html>

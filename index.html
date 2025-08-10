@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#2b0057] text-white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spider-Verse Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .font-comic { font-family: 'Bangers', cursive; }
+    .comic-border { border: 4px solid black; box-shadow: 5px 5px 0px black; }
+    .glitch { animation: glitch 1s infinite; }
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff0080, -2px -2px #00ffff; }
+      50% { text-shadow: -2px -2px #ff0080, 2px 2px #00ffff; }
+      100% { text-shadow: 2px 2px #ff0080, -2px -2px #00ffff; }
+    }
+    a {
+      pointer-events: auto !important;
+      position: relative;
+      z-index: 1000 !important;
+    }
+  </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+<nav id="navbar" class="sticky top-0 z-50 flex justify-between items-center px-8 py-4 bg-[#2b0057] shadow-lg border-b-4 border-[#ff0080] transition-transform duration-300 ease-in-out">
+  <h1 class="text-3xl font-comic text-[#00ffff]">Zahir Hossain Dipto</h1>
+  <ul class="flex gap-6 text-lg font-bold">
+    <li><a href="index.html" class="hover:text-[#ff0080] transition">Home</a></li>
+    <li><a href="about.html" class="hover:text-[#ff0080]">About</a></li>
+    <li><a href="projects.html" class="hover:text-[#ff0080]">Projects</a></li>
+    <li><a href="skills.html" class="hover:text-[#ff0080]">Skills</a></li>
+    <li><a href="contact.html" class="hover:text-[#ff0080]">Contact</a></li>
+  </ul>
+</nav>
+<section class="h-screen flex flex-col justify-center items-center text-center relative">
+  <div class="absolute inset-0 bg-gradient-to-tr from-spiderPink via-spiderPurple to-spiderCyan opacity-20"></div>
+  <h1 class="text-6xl font-comic text-spiderYellow drop-shadow-lg glitch">Zahir Hossain Dipto</h1>
+  <h2 class="mt-6 max-w-xl text-xl lg text-white">
+    <b>Software Engineering Student / Problem Solver</b>
+  </h2>
+  <div class="mt-8 flex gap-6">
+    <!-- GitHub -->
+    <a href="https://github.com/zhdipto" target="_blank" 
+       class="px-6 py-3 bg-gray-800 text-white font-bold rounded-lg comic-border flex items-center gap-2">
+        <i class="fab fa-github"></i>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/zhdipto/" target="_blank" 
+       class="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg comic-border flex items-center gap-2">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/zhdipto" target="_blank" 
+       class="px-6 py-3 bg-blue-700 text-white font-bold rounded-lg comic-border flex items-center gap-2">
+        <i class="fab fa-facebook"></i>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/zh.dipto/" target="_blank" 
+       class="px-6 py-3 bg-pink-600 text-white font-bold rounded-lg comic-border flex items-center gap-2">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+     <!-- LeetCode with custom icon -->
+    <a href="https://leetcode.com/u/zhdipto/" target="_blank" 
+      class="px-6 py-3 bg-yellow-300 text-black font-bold rounded-lg comic-border flex items-center gap-2"><img src="https://img.icons8.com/?size=100&id=wDGo581Ea5Nf&format=png&color=000000" alt="LeetCode Icon" class="w-5 h-5"/>
+    </a>
+
+    <!-- HackerRank -->
+    <a href="https://www.hackerrank.com/profile/zhdipto" target="_blank" 
+       class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg comic-border flex items-center gap-2">
+        <i class="fab fa-hackerrank"></i>
+    </a>
+
+    <!-- Codeforces -->
+    <a href="https://codeforces.com/profile/zhdipto" target="_blank" 
+     class="px-6 py-3 bg-white text-white font-bold rounded-lg comic-border flex items-center gap-2">
+     <img src="https://img.icons8.com/?size=100&id=jldAN67IAsrW&format=png&color=000000" alt="Codeforces Icon" class="w-5 h-5" />
+  </a>
+  </div>
+</section>
+<script src="js/animations.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

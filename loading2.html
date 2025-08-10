@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Spider-Verse Hex Portal (Tailwind)</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  /* Hexagon clip shape (works in modern browsers) */
+  .hex {
+    -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+    clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    will-change: transform, opacity, filter;
+  }
+
+  /* Basic spin / reverse spin */
+  @keyframes spin-clock { to { transform: translate(-50%, -50%) rotate(360deg); } }
+  @keyframes spin-antic { to { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+  /* gentle pulsing glow */
+  @keyframes pulse-glow {
+    0%   { filter: drop-shadow(0 0 8px currentColor) saturate(100%); }
+    50%  { filter: drop-shadow(0 0 36px currentColor) saturate(140%); }
+    100% { filter: drop-shadow(0 0 8px currentColor) saturate(100%); }
+  }
+
+  /* tiny chromatic duplicate that glitches */
+  .hex::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    -webkit-clip-path: inherit;
+    clip-path: inherit;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0.65;
+    transform-origin: center;
+  }
+
+  @keyframes glitch-shift {
+    0%   { transform: translate(2px, -2px) scale(1.01); opacity: .6; }
+    30%  { transform: translate(-3px, 2px) scale(1.02); opacity: .9; }
+    60%  { transform: translate(1px, 1px) scale(0.99); opacity: .5; }
+    100% { transform: translate(2px, -2px) scale(1.01); opacity: .6; }
+  }
+
+  /* helper classes used on elements below */
+  .spin-slow      { animation: spin-clock 16s linear infinite; }
+  .spin-med       { animation: spin-antic 10s linear infinite; }
+  .spin-fast      { animation: spin-clock 6s linear infinite; }
+  .pulse-glow-anim{ animation: pulse-glow 2.6s ease-in-out infinite; }
+  .glitch-anim::after { animation: glitch-shift 0.18s steps(2, end) infinite; }
+
+  /* ensure outline-like glow for depth (outer stroke) */
+  .stroke-ghost {
+    box-shadow:
+      0 0 30px rgba(255,255,255,0.04),
+      0 0 80px rgba(0,0,0,0.25) inset;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+
+  /* radial streaks (thin lines that spin) */
+  .streak {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center bottom;
+    pointer-events: none;
+    opacity: 0.9;
+    mix-blend-mode: screen;
+  }
+
+  /* small responsive fix */
+  @media (max-width:600px) {
+    .portal-wrap { width: min(88vw, 420px); height: min(88vw, 420px); }
+  }
+</style>
+</head>
+
+<body class="bg-gradient-to-b from-purple-950 via-purple-900 to-black min-h-screen flex items-center justify-center">
+
+  <div class="relative portal-wrap w-[520px] h-[520px]">
+    <!-- Outer faint halo (big, slow) -->
+    <div class="hex w-[390px] h-[390px] text-orange-400 spin-slow pulse-glow-anim stroke-ghost"
+         style="background: radial-gradient(circle at 40% 35%, rgba(255,180,80,0.12), transparent 30%),
+                        conic-gradient(from 200deg, rgba(255,140,60,0.6), rgba(255,80,120,0.35));">
+    </div>
+
+    <!-- Outer ring -->
+    <div class="hex w-[345px] h-[345px] text-pink-400 spin-med pulse-glow-anim glitch-anim stroke-ghost"
+         style="background: conic-gradient(from 120deg, rgba(255,120,60,0.85), rgba(255,30,140,0.4));">
+      <!-- chromatic duplicate tint (magenta/cyan) via ::after -->
+      <style>
+        .hex.w-\[345px\]::after { background: linear-gradient(90deg, rgba(255,0,160,0.7), rgba(0,240,210,0.35)); filter: blur(6px); }
+      </style>
+    </div>
+
+    <!-- middle rings -->
+    <div class="hex w-[300px] h-[300px] text-yellow-400 spin-slow pulse-glow-anim"
+         style="background: conic-gradient(from 0deg, rgba(255,190,60,0.95), rgba(255,100,40,0.45));">
+    </div>
+
+    <div class="hex w-[255px] h-[255px] text-orange-500 spin-fast pulse-glow-anim glitch-anim"
+         style="background: conic-gradient(from 60deg, rgba(255,120,50,0.95), rgba(255,50,110,0.3));">
+      <style>
+        /* small different tint for this specific size */
+        .hex.w-\[255px\]::after { background: linear-gradient(90deg, rgba(255,40,120,0.7), rgba(255,200,60,0.18)); filter: blur(4px); }
+      </style>
+    </div>
+
+    <!-- inner bright core -->
+    <div class="hex w-[165px] h-[165px] text-yellow-300 spin-med pulse-glow-anim"
+         style="background: radial-gradient(circle at center, #fff6d6 0%, #ffd26a 20%, rgba(255,120,40,0.7) 60%);">
+    </div>
+
+    <div class="hex w-[110px] h-[110px] text-amber-300 spin-fast pulse-glow-anim"
+         style="background: radial-gradient(circle at 40% 40%, #fff9e6 0%, #ffd88b 30%, rgba(255,100,40,0.9) 70%); box-shadow: 0 0 60px rgba(255,150,40,0.65);">
+    </div>
+
+    <!-- tiny bright core -->
+    <div class="hex w-[60px] h-[60px] text-yellow-200 spin-slow pulse-glow-anim"
+         style="background: radial-gradient(circle at center, #fffef6 0%, #ffecb1 40%, rgba(255,160,20,0.85) 100%);">
+    </div>
+
+    <!-- Chromatic duplicates that randomly jitter (additional visual noise) -->
+    <div class="hex w-[210px] h-[210px] text-fuchsia-400 glitch-anim"
+         style="background: linear-gradient(180deg, rgba(255,0,150,0.08), transparent); opacity:0.35; filter: blur(2px);">
+      <style>
+        .hex.w-\[210px\]::after { background: linear-gradient(90deg, rgba(0,220,200,0.65), rgba(255,30,160,0.55)); filter: blur(8px); transform: translate(5px,-5px); }
+      </style>
+    </div>
+
+    <!-- radial streaks (4 lines) -->
+    <div class="streak w-[2px] h-[220px] spin-fast"
+         style="transform: translate(-50%,-50%) rotate(0deg); left:50%; top:50%; background: linear-gradient(180deg, transparent, rgba(255,255,255,0.9), transparent);">
+    </div>
+    <div class="streak w-[2px] h-[220px] spin-med"
+         style="transform: translate(-50%,-50%) rotate(45deg); left:50%; top:50%; background: linear-gradient(180deg, transparent, rgba(255,0,160,0.9), transparent);">
+    </div>
+    <div class="streak w-[2px] h-[220px] spin-slow"
+         style="transform: translate(-50%,-50%) rotate(90deg); left:50%; top:50%; background: linear-gradient(180deg, transparent, rgba(0,240,200,0.85), transparent);">
+    </div>
+    <div class="streak w-[2px] h-[220px] spin-med"
+         style="transform: translate(-50%,-50%) rotate(135deg); left:50%; top:50%; background: linear-gradient(180deg, transparent, rgba(255,200,60,0.9), transparent);">
+    </div>
+
+    <!-- drifting spark particles -->
+    <div class="absolute w-1 h-1 rounded-full bg-white" style="left:46%; top:34%; opacity:0.9; filter:blur(0.6px); animation: floaty 4s ease-in-out infinite;"></div>
+    <div class="absolute w-1.5 h-1.5 rounded-full bg-white" style="left:62%; top:64%; opacity:0.8; filter:blur(0.6px); animation: floaty 3.2s ease-in-out infinite .2s;"></div>
+    <div class="absolute w-1 h-1 rounded-full bg-white" style="left:72%; top:40%; opacity:0.6; filter:blur(0.6px); animation: floaty 5s ease-in-out infinite .4s;"></div>
+
+    <style>
+      @keyframes floaty {
+        0% { transform: translateY(0) translateX(0) scale(0); opacity:0; }
+        8% { transform: translateY(0) translateX(0) scale(1); opacity:1; }
+        90% { transform: translateY(-80px) translateX(10px) scale(1); opacity:1; }
+        100% { transform: translateY(-120px) translateX(20px) scale(0); opacity:0; }
+      }
+    </style>
+
+    <!-- Loading label -->
+    <div class="absolute left-1/2 -bottom-12 transform -translate-x-1/2 text-white text-lg tracking-widest font-semibold select-none"
+         style="text-shadow:0 0 14px rgba(255,140,40,0.2);">
+      LOADING
+    </div>
+  </div>
+</body>
+</html>
