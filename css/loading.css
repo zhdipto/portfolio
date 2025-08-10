@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spider-Verse Portal Loader</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: radial-gradient(circle at center, #2d1b4e 0%, #1a0d2e 70%, #0a0515 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
 
         .portal-container {
             position: relative;
@@ -361,31 +343,3 @@
                 opacity: 0;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="bg-effects">
-        <div class="crack"></div>
-        <div class="crack"></div>
-        <div class="crack"></div>
-    </div>
-
-    <div class="portal-container">
-        <div class="hexagon hex-1"></div>
-        <div class="hexagon hex-2"></div>
-        <div class="hexagon hex-3"></div>
-        <div class="hexagon hex-4"></div>
-        <div class="hexagon hex-5"></div>
-        <div class="hexagon hex-6"></div>
-        <div class="hexagon hex-7"></div>
-        <div class="hexagon hex-8"></div>
-        
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        
-        <div class="loading-text">Loading</div>
-    </div>
-</body>
-</html>
