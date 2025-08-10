@@ -3,42 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spider-Verse Portfolio</title>
+  <title>Zahir Hossain Dipto</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Poppins', sans-serif; }
-    .font-comic { font-family: 'Bangers', cursive; }
-    .comic-border { border: 4px solid black; box-shadow: 5px 5px 0px black; }
-    .glitch { animation: glitch 1s infinite; }
-    @keyframes glitch {
-      0% { text-shadow: 2px 2px #ff0080, -2px -2px #00ffff; }
-      50% { text-shadow: -2px -2px #ff0080, 2px 2px #00ffff; }
-      100% { text-shadow: 2px 2px #ff0080, -2px -2px #00ffff; }
-    }
-  </style>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css"> 
+  <script src="js/scrollsSpy.js"></script>
 </head>
 <body class="relative overflow-x-hidden">
 
 <nav class="flex justify-between items-center px-8 py-4 bg-[#2b0057] shadow-lg border-b-4 border-[#ff0080]">
-  <h1 class="text-3xl font-comic text-[#00ffff]">Zahir Dipto</h1>
+  <h1 class="text-3xl font-comic text-[#00ffff]">Zahir Hossain Dipto</h1>
   <ul class="flex gap-6 text-lg font-bold">
-    <li><a href="index.html" class="hover:text-[#ff0080] transition">Home</a></li>
-    <li><a href="about.html" class="hover:text-[#ff0080]">About</a></li>
-    <li><a href="projects.html" class="hover:text-[#ff0080]">Projects</a></li>
-    <li><a href="skills.html" class="hover:text-[#ff0080]">Skills</a></li>
-    <li><a href="contact.html" class="hover:text-[#ff0080]">Contact</a></li>
+    <li><a href="index.html" class="btn">Home</a></li>
+    <li><a href="about.html" class="btn">About</a></li>
+    <li><a href="projects.html" class="btn">Projects</a></li>
+    <li><a href="contact.html" class="btn">Contact</a></li>
   </ul>
 </nav>
-<section class="py-16 px-8 max-w-3xl mx-auto">
+<section class="py-12 px-8 container mx-auto">
   <h2 class="text-4xl font-comic text-spiderYellow mb-6">Contact</h2>
-  <form class="comic-border p-6 bg-spiderPurple space-y-4">
-    <input type="text" placeholder="Your Name" class="w-full p-3 rounded bg-white text-black" />
-    <input type="email" placeholder="Your Email" class="w-full p-3 rounded bg-white text-black" />
-    <textarea placeholder="Your Message" class="w-full p-3 rounded bg-white text-black"></textarea>
-    <button class="px-6 py-3 bg-spiderPink text-black font-bold rounded-lg comic-border">Send</button>
-  </form>
-</section>
+  
+  <div class="comic-border p-6 bg-spiderPurple grid grid-cols-1 md:grid-cols-3 gap-4 text-lg">
+     <!-- Email -->
+    <a href="mailto:textzhdipto@gmail.com" 
+       class="inline-flex items-center justify-center px-6 py-3 bg-blue-500 text-white font-bold rounded-lg comic-border gap-3 hover:bg-blue-600 transition-colors duration-300">
+      <i class="fas fa-envelope text-xl"></i> textzhdipto@gmail.com
+    </a>
+
+    <!-- Phone -->
+    <a href="tel:+8801793866555" 
+       class="inline-flex items- justify-center px-6 py-3 bg-green-500 text-white font-bold rounded-lg comic-border gap-3 hover:bg-green-600 transition-colors duration-300">
+      <i class="fas fa-phone-alt text-xl"></i>
+      +8801793866555 
+    </a>
+    
+    <!-- Resume Download -->
+    <a href="assets/Dipto_resume.pdf" target="_blank"
+       class="inline-flex items-center justify-center px-6 py-3 bg-red-500 text-white font-bold rounded-lg comic-border gap-3 hover:bg-red-600 transition-colors duration-300">
+      <i class="fas fa-file-pdf text-xl"></i> Download Resume
+    </a>
+  </div>
 <script src="js/animations.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
