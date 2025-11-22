@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 import myPic from "@/public/images/myPic.jpeg";
+import project1 from "@/public/images/project1.png";
+import project2 from "@/public/images/project2.jpg";
+import project3 from "@/public/images/project3.png";
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiCodeforces, SiLeetcode, SiHackerrank } from "react-icons/si";
 import React, {useState} from "react";
@@ -80,7 +83,7 @@ const DATA = {
         "A digital signal for lost items! A web platform connecting students with their lost belongings.",
       tech: ["Django"],
       color: "bg-green-100",
-      image: "/images/project1.png",
+      image: project1,
       link: "https://github.com/zhdipto/DIU-FIND-FIX",
     },
     {
@@ -89,7 +92,7 @@ const DATA = {
         "Weather Monitoring Autonomous Device! Keeping an eye on the skies with IoT sensors.",
       tech: ["IoT", "C++"],
       color: "bg-blue-100",
-      image: "/images/project2.jpg",
+      image: project2,
       link: "https://github.com/zhdipto/IOT-Project-Weather-Monitoring-Autonomous-Device",
     },
     {
@@ -98,7 +101,7 @@ const DATA = {
         "The ultimate tool for academic order! Managing seating plans with precision.",
       tech: ["C"],
       color: "bg-purple-100",
-      image: "/images/project3.png",
+      image: project3,
       link: "https://github.com/zhdipto/Exam-Management-System-with-C",
     },
   ],
