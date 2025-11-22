@@ -80,7 +80,7 @@ const DATA = {
     {
       title: "DIU Find & Fix",
       description:
-        "A digital signal for lost items! A web platform connecting students with their lost belongings.",
+        "DIU Find & Fix is a web-based platform for DIU students and staff to report and manage lost and found items and campus issues.",
       tech: ["Django"],
       color: "bg-green-100",
       image: project1,
@@ -89,7 +89,7 @@ const DATA = {
     {
       title: "WMAD Device",
       description:
-        "Weather Monitoring Autonomous Device! Keeping an eye on the skies with IoT sensors.",
+        "Weather Monitoring Autonomous Deviceis a customizable and affordable weather monitoring system for general purpose use.",
       tech: ["IoT", "C++"],
       color: "bg-blue-100",
       image: project2,
@@ -98,7 +98,7 @@ const DATA = {
     {
       title: "Exam Management System",
       description:
-        "The ultimate tool for academic order! Managing seating plans with precision.",
+        "A convenient tool for students and teachers to access exam schedules and seating arrangements",
       tech: ["C"],
       color: "bg-purple-100",
       image: project3,
@@ -445,7 +445,7 @@ const MissionsPage = () => (
 
     <div
       id="projects-scroll"
-      className="flex overflow-x-auto gap-6 py-4 px-2 snap-x snap-mandatory scroll-smooth"
+      className="flex overflow-x-auto gap-6 py-0 px-2 snap-x snap-mandatory scroll-smooth"
     >
       {DATA.projects.map((project, idx) => (
         <div
